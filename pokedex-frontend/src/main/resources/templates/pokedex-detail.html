@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon - Pokedex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .detail-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pokemon-sprites {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sprite {
+            width: 150px;
+            height: 150px;
+            image-rendering: pixelated;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .info-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .types {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .type-badge {
+            background: var(--primary);
+            padding: 0.3rem 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glass-container" style="max-width: 800px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <a href="/pokedex" style="color: #2ed573; text-decoration: none; font-weight: bold;">&larr; Volver a la
+                Pokedex</a>
+            <a href="/logout"
+                style="color: #ff4757; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Cerrar Sesión</a>
+        </div>
+
+        <div th:if="${error}" class="error-alert">
+            <p th:text="${error}"></p>
+        </div>
+
+        <div th:if="${pokemon != null}" class="detail-card">
+            <h1 style="text-transform: capitalize; font-size: 3rem; margin-bottom: 0;" th:text="${pokemon.name}"></h1>
+            <p style="color: #aaa; margin-bottom: 1.5rem;">Nº <span th:text="${pokemon.id}"></span></p>
+
+            <div class="types">
+                <span th:each="typeObj : ${pokemon.types}" th:text="${typeObj.type.name}" class="type-badge"></span>
+            </div>
+
+            <div class="pokemon-sprites">
+                <img th:if="${pokemon.sprites?.front_default != null}" th:src="${pokemon.sprites.front_default}"
+                    class="sprite" alt="Front">
+                <img th:if="${pokemon.sprites?.back_default != null}" th:src="${pokemon.sprites.back_default}"
+                    class="sprite" alt="Back">
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Altura</div>
+                    <div class="info-value" th:text="${pokemon.height}"></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Peso</div>
+                    <div class="info-value" th:text="${pokemon.weight}"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

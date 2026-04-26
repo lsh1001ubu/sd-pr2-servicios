@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de API - Pokedex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    
+    <div class="glass-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <span style="color: #2ed573; font-weight: bold;" th:text="'Usuario: ' + ${username != null ? username : 'Invitado'}"></span>
+            <div>
+                <a href="/pokedex" style="color: white; text-decoration: none; font-weight: bold; margin-right: 1rem;">Mi Pokedex</a>
+                <a href="/logout" style="color: #ff4757; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Cerrar Sesión</a>
+            </div>
+        </div>
+
+        <h2>Simulador de Integración de API</h2>
+        <p style="text-align: center; margin-bottom: 2rem; color: #ddd;">
+            Prueba las conexiones a la API de Python, base de datos y la PokeAPI externa. Puedes provocar errores intencionados para ver los mecanismos de gestión de excepciones en acción.
+        </p>
+
+        <!-- Error Messages (Translated) -->
+        <div th:if="${translatedError}" class="error-alert">
+            <h4 style="margin-bottom: 0.5rem; color: #ff4757;">¡Error Capturado!</h4>
+            <p th:text="${translatedError}"></p>
+        </div>
+
+        <!-- Success Messages -->
+        <div th:if="${successData}" class="success-alert">
+            <h4 style="margin-bottom: 0.5rem; color: #2ed573;">¡Éxito!</h4>
+            <p>La llamada a la API fue exitosa.</p>
+        </div>
+
+        <div class="grid-buttons">
+            <div>
+                <h3 style="margin-bottom: 1rem; color: #2ed573;">Camino Correcto (Happy Path)</h3>
+                <a th:href="@{/api/call/db}" class="btn" style="width: 100%; margin-bottom: 1rem;">Obtener Pokémon de BD</a>
+                <a th:href="@{/api/call/pokeapi(name='pikachu')}" class="btn btn-secondary" style="width: 100%;">Obtener Pikachu de API</a>
+            </div>
+            
+            <div>
+                <h3 style="margin-bottom: 1rem; color: #ff4757;">Simular Errores</h3>
+                <a th:href="@{/api/error/file}" class="btn" style="width: 100%; margin-bottom: 1rem; background: #ff9f43;">Simular Error de Fichero</a>
+                <a th:href="@{/api/error/db}" class="btn" style="width: 100%; margin-bottom: 1rem; background: #ee5253;">Simular Error de BD</a>
+                <a th:href="@{/api/error/api}" class="btn" style="width: 100%; background: #8395a7; color: white;">Simular Error de API Externa</a>
+            </div>
+        </div>
+
+        <!-- Raw Technical Data (Debugging) -->
+        <div th:if="${rawError != null or successData != null}" style="margin-top: 2rem;">
+            <h3>Respuesta Técnica Bruta:</h3>
+            <pre th:text="${rawError != null ? rawError : successData}"></pre>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="/" style="color: #bbb; text-decoration: none;">Volver al Inicio</a>
+        </div>
+    </div>
+
+</body>
+</html>

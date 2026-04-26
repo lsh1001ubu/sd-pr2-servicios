@@ -1,0 +1,152 @@
+{
+	"info": {
+		"name": "Pokedex API",
+		"description": "Colección de Postman con todos los endpoints disponibles en el microservicio pokedex-api.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. PokeAPI",
+			"item": [
+				{
+					"name": "Obtener Lista General de Pokémon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/pokemon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"pokemon"
+							]
+						},
+						"description": "Consultar a la PokeAPI externa para recuperar una lista paginada de 50 Pokémon junto con sus sprites."
+					}
+				},
+				{
+					"name": "Obtener Detalle de Pokémon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/pokemon/pikachu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"pokemon",
+								"pikachu"
+							]
+						},
+						"description": "Obtener la información detallada de un Pokémon por su nombre desde la PokeAPI."
+					}
+				}
+			]
+		},
+		{
+			"name": "2. DB Local",
+			"item": [
+				{
+					"name": "Obtener Pokémon de la Base de Datos Local",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/db/pokemon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"db",
+								"pokemon"
+							]
+						},
+						"description": "Consultar la BD para obtener la lista de los Pokémon personalizados."
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Errores",
+			"item": [
+				{
+					"name": "Simular Error de I/O",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/test/error/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"test",
+								"error",
+								"file"
+							]
+						},
+						"description": "Fuerza un error interno de lectura de un archivo inexistente."
+					}
+				},
+				{
+					"name": "Simular Error de Base de Datos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/test/error/db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"test",
+								"error",
+								"db"
+							]
+						},
+						"description": "Consulta SQL inválida para probar errores de la BD."
+					}
+				},
+				{
+					"name": "Simular Error de API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/test/error/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"test",
+								"error",
+								"api"
+							]
+						},
+						"description": "Forza una llamada HTTP a un endpoint inexistente de la PokeAPI para ontener un error."
+					}
+				}
+			]
+		}
+	]
+}

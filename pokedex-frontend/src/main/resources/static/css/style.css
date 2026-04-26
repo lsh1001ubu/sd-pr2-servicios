@@ -1,0 +1,143 @@
+/* Colores y estilos glass */
+:root {
+    --primary: #ff4757;
+    --secondary: #2ed573;
+    --dark: #2f3542;
+    --light: #f1f2f6;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: none;
+}
+
+/* Reset de estilos para evitar prpoblemas*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+/* Estilos del body  */
+body {
+    background: #1e3c72;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Contenedor principal efecto glass*/
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 0;
+    box-shadow: var(--glass-shadow);
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2rem;
+}
+
+/* HEaders */
+h1,
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Botones, con el naming de bootstrap porque me es más sencillo */
+.btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {}
+
+/* Botones secundarios, cambiar color */
+.btn-secondary {
+    background: #3742fa;
+}
+
+.btn-secondary:hover {}
+
+/* Elementos de formularios */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Campos de texto y contraseñas */
+input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 0;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    outline: none;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+}
+
+/* Alertas de error */
+.error-alert {
+    background: rgba(255, 71, 87, 0.2);
+    border-left: 4px solid var(--primary);
+    padding: 1rem;
+    border-radius: 0;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+/* Alertas de éxito */
+.success-alert {
+    background: rgba(46, 213, 115, 0.2);
+    border-left: 4px solid var(--secondary);
+    padding: 1rem;
+    border-radius: 0;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+/* Contenedor para navlinks */
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+/* grid para varios botones */
+.grid-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Display para bloques de código (En el simulador de API lo uso) */
+pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 0;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}

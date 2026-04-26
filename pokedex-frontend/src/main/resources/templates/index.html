@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div class="glass-container" style="max-width: 600px; text-align: center;">
+        <h1>Bienvenido a la Pokedex</h1>
+        <p style="margin-bottom: 2rem; color: #ddd;">App para ver pokemons y exponer una API</p>
+
+        <div class="nav-links">
+            <a th:if="${loggedIn == null}" href="/login" class="btn">Iniciar Sesión</a>
+            <a th:if="${loggedIn != null}" href="/logout" class="btn" style="background: #ff4757;">Cerrar Sesión</a>
+            <a href="/simulate" class="btn btn-secondary">Simulador API</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

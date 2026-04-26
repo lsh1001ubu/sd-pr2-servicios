@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Pokedex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .pokemon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .pokemon-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .pokemon-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .pokemon-image {
+            width: 96px;
+            height: 96px;
+            object-fit: contain;
+            image-rendering: pixelated;
+        }
+        .pokemon-name {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="glass-container" style="max-width: 1000px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <span style="color: #2ed573; font-weight: bold;" th:text="'Usuario: ' + ${username != null ? username : 'Invitado'}"></span>
+            <div>
+                <a href="/simulate" style="color: white; text-decoration: none; font-weight: bold; margin-right: 1rem;">Simulador API</a>
+                <a href="/logout" style="color: #ff4757; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Cerrar Sesión</a>
+            </div>
+        </div>
+
+        <h2>Mi Pokedex Oficial</h2>
+        
+        <div th:if="${error}" class="error-alert">
+            <p th:text="${error}"></p>
+        </div>
+
+        <div class="pokemon-grid" th:if="${pokemonList != null}">
+            <a th:each="poke : ${pokemonList}" th:href="@{'/pokedex/' + ${poke.name}}" class="pokemon-card">
+                <img th:src="${poke.image}" th:alt="${poke.name}" class="pokemon-image" loading="lazy">
+                <span class="pokemon-name" th:text="${poke.name}"></span>
+            </a>
+        </div>
+        
+    </div>
+
+</body>
+</html>

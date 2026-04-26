@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Pokedex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div class="glass-container" style="max-width: 400px;">
+        <h2>Login de Entrenador</h2>
+        <div th:if="${error}" class="error-alert" style="margin-bottom: 1rem;">
+            <p>Login fallido. Inténtalo de nuevo.</p>
+        </div>
+
+        <form action="/login" method="post">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Usuario" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Acceder</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="/" style="color: #bbb; text-decoration: none; font-size: 0.9rem;">Volver</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
